@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>История изменений задачи "{{ task.title }}"</h2>
+{% for history in task.task_history.all %}
+    <p>{{ history.task }}  - {{ history.status }} - {{history.assigned_to}}  - {{ history.created_at }}</p>
+{% empty %}
+    <p>Нет истории изменений.</p>
+{% endfor %}
+{% endblock %}

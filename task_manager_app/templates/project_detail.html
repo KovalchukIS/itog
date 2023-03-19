@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>{{ object.name }}</h1>
+  <p>{{ object.description }}</p>
+  <p>Дата создания: {{ object.created_at }}</p>
+<a href="{% url 'project_update' object.pk %}" class="btn btn-primary">Изменить проект</a>
+
+  <form method="POST" action="{% url 'project_delete' object.pk %}" style="display: inline-block;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger" onclick="return confirm('Вы действительно хотите удалить проект?')">Удалить проект</button>
+  </form>
+  <h2>Спринты</h2>
+  <ul>
+  {% for sprint in object.sprints.all %}
+    <li><a href="{% url 'sprint_detail' sprint.pk %}">{{ sprint.name }}</a></li>
+  {% empty %}
+    <li>Нет спринтов</li>
+  {% endfor %}
+  </ul>
+  <a href="{% url 'sprint_create' %}">Создать новый спринт</a>
+{% endblock %}
+
+
+
+

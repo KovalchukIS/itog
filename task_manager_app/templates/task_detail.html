@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>{{ object.name }}</h1>
+  <p>{{ object.description }}</p>
+  <p>Дата создания: {{ object.created_date }}</p>
+<a href="{% url 'task_update' object.pk %}" class="btn btn-primary">Изменить задачу</a>
+
+  <form method="POST" action="{% url 'task_delete' object.pk %}" style="display: inline-block;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger" onclick="return confirm('Вы действительно хотите удалить спринт?')">Удалить задачу</button>
+  
+  
+  </form>
+
+  
+
+  <h2>Проект</h2>
+<ul>
+  {% if object.project %}
+  <a href="{% url 'project_detail' object.project.pk %}"> {{ object.project.name }} </a>
+{% else %}
+  <p>Нет проекта</p>
+{% endif %}
+</ul>
+
+
+
+<h2>Спринт</h2>
+<ul>
+  {% if object.sprint %}
+  <a href="{% url 'sprint_detail' object.sprint.pk %}"> {{ object.sprint.name }} </a>
+{% else %}
+  <p>Нет спринта</p>
+{% endif %}
+
+
+
+<h2>
+<ul>
+  {% if object.history %}
+  <a href="{% url 'task_history' object.pk %}">История изменений</a>
+{% else %}
+  <p>Нет спринта</p>
+{% endif %}
+</h2>
+{% endblock %}
+
+

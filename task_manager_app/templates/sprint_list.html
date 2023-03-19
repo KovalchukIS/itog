@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Список Спринтов</h1>
+
+<ul>
+{% for sprint in sprints %}
+    <li><a href="{% url 'sprint_detail' sprint.pk %}">{{ sprint.name }}</a></li>
+{% empty %}
+<li>Нет спринтов</li>
+  {% endfor %}
+  </ul>
+
+<a href="{% url 'sprint_create' %}">Создать новый спринт</a>
+{% endblock %}

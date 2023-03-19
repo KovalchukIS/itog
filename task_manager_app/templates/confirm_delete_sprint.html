@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Удалить спринт "{{ object.name }}"</h1>
+  <p>Вы уверены, что хотите удалить этот спринт?</p>
+
+  <form action="{% url 'project_delete' object.pk %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Удалить">
+    <a href="{% url 'project_detail' object.pk %}">Отменить</a>
+  </form>
+{% endblock %}

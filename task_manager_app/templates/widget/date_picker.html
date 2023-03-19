@@ -1,0 +1,11 @@
+{% load static %}
+{{ widget }}
+<script>
+    $(function () {
+        $('input[name="{{ widget.name }}"]').datepicker({
+            dateFormat: 'yy-mm-dd',
+            changeYear: true,
+            yearRange: '1900:2050'
+        });
+    });
+</script>

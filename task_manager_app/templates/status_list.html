@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Список Статусов</h1>
+  <ul>
+    {% for status in status %}
+        <li><a href="{% url 'status_detail' status.pk %}">{{ status.name }}</a></li>
+    {% empty %}
+    <li>Нет статусов</li>
+      {% endfor %}
+      </ul>
+  
+  <a href="{% url 'status_create' %}">Создать Статус</a>
+  {% endblock %}
+
+
